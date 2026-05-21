@@ -130,6 +130,7 @@ export default function App() {
       <header className="app-header">
         <h1>📝 ApplyTrack</h1>
         <p>Track your job and internship applications</p>
+        <p className="app-subtitle">Keep every role, deadline, and status organized in one polished dashboard.</p>
       </header>
 
       <main className="app-main">
