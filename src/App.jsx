@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { loadApplications, saveApplications, validateApplication, createApplication } from './utils/storage';
+import { getApplications, saveApplications, validateApplication, createApplication } from './utils/storage';
 import './App.css';
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
 
   // Load applications from localStorage on mount
   useEffect(() => {
-    const loaded = loadApplications();
+    const loaded = getApplications();
     setApplications(loaded);
   }, []);
 
