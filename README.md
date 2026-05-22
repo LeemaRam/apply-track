@@ -1,4 +1,6 @@
 ﻿# ApplyTrack
+ <img width="800" height="450" alt="2026-05-2223-07-24-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/933134b0-628f-492a-9eba-a2e75a7475c5" />
+
 
 **ApplyTrack** is a persistent internship and job application tracker built with React, Vite, JavaScript, CSS, and browser localStorage.
 
