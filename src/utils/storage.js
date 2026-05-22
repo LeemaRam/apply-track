@@ -30,10 +30,10 @@ export function saveApplications(applications) {
 export function validateApplication(app) {
   const errors = [];
   if (!app.company || app.company.trim() === '') {
-    errors.push('Company is required.');
+    errors.push('Please enter a valid company name.');
   }
   if (!app.role || app.role.trim() === '') {
-    errors.push('Role is required.');
+    errors.push('Please enter a valid role title.');
   }
   return {
     isValid: errors.length === 0,
