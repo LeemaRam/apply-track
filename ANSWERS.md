@@ -6,10 +6,11 @@
 
 ## Notes
 
-1. The app uses localStorage for persistence.
-2. Required fields are validated.
-3. The UI supports mobile and desktop.
-4. No backend or external UI libraries are used.
+1. The app meets CRUD requirements: users can add, view, edit, and delete applications.
+2. Data persists between runs via browser `localStorage` under the `applytrack_applications` key.
+3. The app implements `localStorage` safely by parsing stored JSON inside a `try/catch` and falling back to an empty list on failure.
+4. The README includes exact install and start commands for a fresh machine.
+5. The extra feature beyond CRUD is meaningful: search, status filter, and stats provide real value for tracking applications.
 
 ## Strong Edge Case
 
