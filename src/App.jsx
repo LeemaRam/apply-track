@@ -298,6 +298,18 @@ export default function App() {
               <option value="offer">Offer</option>
               <option value="rejected">Rejected</option>
             </select>
+            {(searchTerm !== '' || filterStatus !== 'all') && (
+              <button
+                type="button"
+                className="btn btn-secondary btn-clear"
+                onClick={() => {
+                  setSearchTerm('');
+                  setFilterStatus('all');
+                }}
+              >
+                Clear filters
+              </button>
+            )}
           </section>
         )}
 

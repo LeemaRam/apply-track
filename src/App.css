@@ -263,7 +263,7 @@ textarea {
 
 .search-filter-section {
   display: grid;
-  grid-template-columns: 1fr 220px;
+  grid-template-columns: 1fr minmax(160px, 220px) auto;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
   align-items: center;
@@ -277,6 +277,12 @@ textarea {
   padding: 1rem 1.1rem;
   background: white;
   color: var(--color-text);
+}
+
+.btn-clear {
+  min-width: 140px;
+  padding: 0.95rem 1rem;
+  font-size: 0.95rem;
 }
 
 .search-input::placeholder {
