@@ -161,8 +161,10 @@ export default function App() {
         {/* Add Application Button */}
         {!showForm && (
           <button 
+            type="button"
             className="btn btn-primary btn-add"
             onClick={() => setShowForm(true)}
+            aria-label="Open add application form"
           >
             + Add Application
           </button>
@@ -279,15 +281,19 @@ export default function App() {
 
         {/* Search and Filter Section */}
         {applications.length > 0 && !showForm && (
-          <section className="search-filter-section">
+          <section className="search-filter-section" aria-label="Search and filter applications">
+            <label htmlFor="search" className="sr-only">Search applications</label>
             <input
+              id="search"
               type="text"
               placeholder="🔍 Search by company, role, or notes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
+            <label htmlFor="statusFilter" className="sr-only">Filter by status</label>
             <select 
+              id="statusFilter"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
               className="filter-select"
@@ -306,6 +312,7 @@ export default function App() {
                   setSearchTerm('');
                   setFilterStatus('all');
                 }}
+                aria-label="Clear search and status filters"
               >
                 Clear filters
               </button>
@@ -351,7 +358,12 @@ export default function App() {
                     )}
                     {app.link && (
                       <p className="meta">
-                        🔗 <a href={app.link} target="_blank" rel="noopener noreferrer">
+                        🔗 <a
+                          href={app.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open application link for ${app.company}`}
+                        >
                           View Application
                         </a>
                       </p>
@@ -368,14 +380,18 @@ export default function App() {
 
                   <div className="card-actions">
                     <button
+                      type="button"
                       className="btn btn-secondary btn-sm"
                       onClick={() => startEdit(app)}
+                      aria-label={`Edit application for ${app.company}`}
                     >
                       Edit
                     </button>
                     <button
+                      type="button"
                       className="btn btn-danger btn-sm"
                       onClick={() => deleteApplication(app.id)}
+                      aria-label={`Delete application for ${app.company}`}
                     >
                       Delete
                     </button>
