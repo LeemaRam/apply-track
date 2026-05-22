@@ -129,12 +129,19 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <div className="hero">
-          <h1>📝 ApplyTrack</h1>
-          <div className="hero-meta">
-            <p className="hero-sub">Track your job and internship applications</p>
-            <span className="hero-badge">Persistent mini-app</span>
+          <div className="hero-card">
+            <div className="hero-left">
+              <h1>ApplyTrack</h1>
+              <div className="hero-meta">
+                <p className="hero-sub">Track your job and internship applications</p>
+                <span className="hero-badge">Persistent CRUD App</span>
+              </div>
+              <p className="app-subtitle">Keep every role, deadline, and status organized in one polished dashboard.</p>
+            </div>
+            <div className="hero-right">
+              <div className="hero-cta">Your data is stored locally • Private</div>
+            </div>
           </div>
-          <p className="app-subtitle">Keep every role, deadline, and status organized in one polished dashboard.</p>
         </div>
       </header>
 
@@ -142,38 +149,38 @@ export default function App() {
         {/* Stats Section */}
         <section className="stats-section">
           <div className="stat-card">
-            <div className="stat-icon">🗂️</div>
+            <div className="stat-icon total">#</div>
             <div>
               <div className="stat-number">{stats.total}</div>
-              <div className="stat-label">Total</div>
+              <div className="stat-sub">Total</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">✉️</div>
+            <div className="stat-icon applied">✉</div>
             <div>
               <div className="stat-number">{stats.applied}</div>
-              <div className="stat-label">Applied</div>
+              <div className="stat-sub">Applied</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">🎙️</div>
+            <div className="stat-icon interview">🎙</div>
             <div>
               <div className="stat-number">{stats.interview}</div>
-              <div className="stat-label">Interview</div>
+              <div className="stat-sub">Interview</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">🎉</div>
+            <div className="stat-icon offer">⭐</div>
             <div>
               <div className="stat-number">{stats.offer}</div>
-              <div className="stat-label">Offer</div>
+              <div className="stat-sub">Offer</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">❌</div>
+            <div className="stat-icon rejected">✖</div>
             <div>
               <div className="stat-number">{stats.rejected}</div>
-              <div className="stat-label">Rejected</div>
+              <div className="stat-sub">Rejected</div>
             </div>
           </div>
         </section>
@@ -186,7 +193,8 @@ export default function App() {
             onClick={() => setShowForm(true)}
             aria-label="Open add application form"
           >
-            + Add Application
+            <span className="btn-icon">+</span>
+            <span>Add Application</span>
           </button>
         )}
 
@@ -302,41 +310,44 @@ export default function App() {
         {/* Search and Filter Section */}
         {applications.length > 0 && !showForm && (
           <section className="search-filter-section toolbar-card" aria-label="Search and filter applications">
-            <label htmlFor="search" className="sr-only">Search applications</label>
-            <input
-              id="search"
-              type="text"
-              placeholder="🔍 Search by company, role, or notes..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-            <label htmlFor="statusFilter" className="sr-only">Filter by status</label>
-            <select 
-              id="statusFilter"
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="filter-select"
-            >
-              <option value="all">All Status</option>
-              <option value="applied">Applied</option>
-              <option value="interview">Interview</option>
-              <option value="offer">Offer</option>
-              <option value="rejected">Rejected</option>
-            </select>
-            {(searchTerm !== '' || filterStatus !== 'all') && (
-              <button
-                type="button"
-                className="btn btn-secondary btn-clear"
-                onClick={() => {
-                  setSearchTerm('');
-                  setFilterStatus('all');
-                }}
-                aria-label="Clear search and status filters"
+            <div className="toolbar-head">Manage Applications</div>
+            <div className="toolbar-controls">
+              <label htmlFor="search" className="sr-only">Search applications</label>
+              <input
+                id="search"
+                type="text"
+                placeholder="Search by company, role, or notes..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+              <label htmlFor="statusFilter" className="sr-only">Filter by status</label>
+              <select 
+                id="statusFilter"
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="filter-select"
               >
-                Clear filters
-              </button>
-            )}
+                <option value="all">All Status</option>
+                <option value="applied">Applied</option>
+                <option value="interview">Interview</option>
+                <option value="offer">Offer</option>
+                <option value="rejected">Rejected</option>
+              </select>
+              {(searchTerm !== '' || filterStatus !== 'all') && (
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-clear"
+                  onClick={() => {
+                    setSearchTerm('');
+                    setFilterStatus('all');
+                  }}
+                  aria-label="Clear search and status filters"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
           </section>
         )}
 
@@ -361,65 +372,62 @@ export default function App() {
           ) : (
             <div className="applications-list">
               {filteredApplications.map(app => (
-                <div key={app.id} className={`application-card status-${app.status}`}>
-                  <div className="card-header">
-                    <div>
-                      <h3>{app.company}</h3>
-                      <p className="role">{app.role}</p>
+                  <div key={app.id} className={`application-card status-${app.status}`}>
+                    <div className="card-header">
+                      <div>
+                        <h3>{app.company}</h3>
+                        <p className="role">{app.role}</p>
+                      </div>
+                      <span className={`status-badge status-${app.status} status-pill`}>
+                        {app.status}
+                      </span>
                     </div>
-                    <span className={`status-badge status-${app.status}`}>
-                      {app.status}
-                    </span>
-                  </div>
 
-                  <div className="card-body">
-                    {app.deadline && (
-                      <p className="meta">
-                        📅 Deadline: {new Date(app.deadline).toLocaleDateString()}
-                      </p>
-                    )}
-                    {app.link && (
-                      <p className="meta">
-                        🔗 <a
-                          href={app.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`Open application link for ${app.company}`}
-                        >
-                          View Application
-                        </a>
-                      </p>
-                    )}
-                    {app.notes && (
-                      <p className="notes">
-                        📝 {app.notes}
-                      </p>
-                    )}
-                    <p className="created-at">
-                      Applied: {new Date(app.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
+                    <div className="card-body">
+                      <div className="card-meta-row">
+                        {app.deadline ? <span>📅 {new Date(app.deadline).toLocaleDateString()}</span> : null}
+                        <span>🕒 Applied: {new Date(app.createdAt).toLocaleDateString()}</span>
+                      </div>
 
-                  <div className="card-actions">
-                    <button
-                      type="button"
-                      className="btn btn-secondary btn-sm"
-                      onClick={() => startEdit(app)}
-                      aria-label={`Edit application for ${app.company}`}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger btn-sm"
-                      onClick={() => deleteApplication(app.id)}
-                      aria-label={`Delete application for ${app.company}`}
-                    >
-                      Delete
-                    </button>
+                      {app.link && (
+                        <p className="meta">
+                          🔗 <a
+                            href={app.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open application link for ${app.company}`}
+                          >
+                            View Application
+                          </a>
+                        </p>
+                      )}
+                      {app.notes && (
+                        <p className="notes">
+                          📝 {app.notes}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="card-actions">
+                      <button
+                        type="button"
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => startEdit(app)}
+                        aria-label={`Edit application for ${app.company}`}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deleteApplication(app.id)}
+                        aria-label={`Delete application for ${app.company}`}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           )}
         </section>
