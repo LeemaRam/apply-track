@@ -27,7 +27,7 @@ ApplyTrack lets users add, view, edit, delete, search, and filter application re
 
 ## Requirements
 
-- Node.js installed
+- Node.js 16+ installed
 - npm installed
 
 ## Run Locally
