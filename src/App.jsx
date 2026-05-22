@@ -128,33 +128,53 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>📝 ApplyTrack</h1>
-        <p>Track your job and internship applications</p>
-        <p className="app-subtitle">Keep every role, deadline, and status organized in one polished dashboard.</p>
+        <div className="hero">
+          <h1>📝 ApplyTrack</h1>
+          <div className="hero-meta">
+            <p className="hero-sub">Track your job and internship applications</p>
+            <span className="hero-badge">Persistent mini-app</span>
+          </div>
+          <p className="app-subtitle">Keep every role, deadline, and status organized in one polished dashboard.</p>
+        </div>
       </header>
 
       <main className="app-main">
         {/* Stats Section */}
         <section className="stats-section">
           <div className="stat-card">
-            <div className="stat-number">{stats.total}</div>
-            <div className="stat-label">Total</div>
+            <div className="stat-icon">🗂️</div>
+            <div>
+              <div className="stat-number">{stats.total}</div>
+              <div className="stat-label">Total</div>
+            </div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">{stats.applied}</div>
-            <div className="stat-label">Applied</div>
+            <div className="stat-icon">✉️</div>
+            <div>
+              <div className="stat-number">{stats.applied}</div>
+              <div className="stat-label">Applied</div>
+            </div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">{stats.interview}</div>
-            <div className="stat-label">Interview</div>
+            <div className="stat-icon">🎙️</div>
+            <div>
+              <div className="stat-number">{stats.interview}</div>
+              <div className="stat-label">Interview</div>
+            </div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">{stats.offer}</div>
-            <div className="stat-label">Offer</div>
+            <div className="stat-icon">🎉</div>
+            <div>
+              <div className="stat-number">{stats.offer}</div>
+              <div className="stat-label">Offer</div>
+            </div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">{stats.rejected}</div>
-            <div className="stat-label">Rejected</div>
+            <div className="stat-icon">❌</div>
+            <div>
+              <div className="stat-number">{stats.rejected}</div>
+              <div className="stat-label">Rejected</div>
+            </div>
           </div>
         </section>
 
@@ -281,7 +301,7 @@ export default function App() {
 
         {/* Search and Filter Section */}
         {applications.length > 0 && !showForm && (
-          <section className="search-filter-section" aria-label="Search and filter applications">
+          <section className="search-filter-section toolbar-card" aria-label="Search and filter applications">
             <label htmlFor="search" className="sr-only">Search applications</label>
             <input
               id="search"
@@ -326,11 +346,13 @@ export default function App() {
             <div className="empty-state">
               {applications.length === 0 ? (
                 <>
-                  <p className="empty-title">No applications yet</p>
-                  <p className="empty-subtitle">Start tracking your applications by clicking "Add Application"</p>
+                  <div className="empty-emoji">📭</div>
+                  <p className="empty-title">You're all caught up</p>
+                  <p className="empty-subtitle">No applications yet — start tracking by clicking "Add Application"</p>
                 </>
               ) : (
                 <>
+                  <div className="empty-emoji">🔍</div>
                   <p className="empty-title">No matching applications</p>
                   <p className="empty-subtitle">Try adjusting your search or filter</p>
                 </>
